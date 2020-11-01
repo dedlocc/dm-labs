@@ -3,12 +3,11 @@ project(dm-labs)
 
 set(CMAKE_CXX_STANDARD 17)
 
-file(GLOB_RECURSE FILES src/**.cpp)
+set(LAB 1/boolean_functions)
+
+file(GLOB FILES src/term${LAB}/**.cpp)
 
 foreach (FILE ${FILES})
-    file(RELATIVE_PATH FILE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src/ ${FILE})
-    get_filename_component(FILE_DIR ${FILE_PATH} DIRECTORY)
-    get_filename_component(FILE_NAME ${FILE_PATH} NAME_WE)
-    string(REPLACE / "." TARGET "${FILE_DIR}.${FILE_NAME}")
+    get_filename_component(TARGET ${FILE} NAME_WE)
     add_executable(${TARGET} ${FILE})
 endforeach ()
