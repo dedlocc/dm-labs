@@ -20,7 +20,7 @@ int main()
 
     vector<bool> v(n);
 
-    for (const auto &_ : v) {
+    for (size_t i = 0; i < k; ++i) {
         size_t t;
         cin >> t;
         v[t - 1] = true;

@@ -11,22 +11,6 @@
 
 using namespace std;
 
-void foo(vector<size_t> &v)
-{
-    auto a = v.end() - 1;
-    auto b = v.end() - 2;
-
-    if (--*a < ++*b) {
-        *b-- += *a--;
-        v.pop_back();
-    } else {
-        while (*b << 1u <= *a) {
-            v.push_back(*a - *b);
-            *(a = v.end() - 2)++ = *(b = v.end() - 3)++;
-        }
-    }
-}
-
 int main()
 {
     freopen(FILE_IN, "r", stdin), freopen(FILE_OUT, "w", stdout);
@@ -37,7 +21,18 @@ int main()
     vector<size_t> v(n, 1u);
 
     for (size_t i = 0; i < k; ++i) {
-        foo(v);
+        auto a = v.end() - 1;
+        auto b = v.end() - 2;
+
+        if (--*a < ++*b) {
+            *b-- += *a--;
+            v.pop_back();
+        } else {
+            while (*b << 1u <= *a) {
+                v.push_back(*a - *b);
+                *(a = v.end() - 2)++ = *(b = v.end() - 3)++;
+            }
+        }
     }
 
     cout << v[0];
