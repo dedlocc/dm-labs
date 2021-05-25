@@ -3,7 +3,9 @@ project(dm-labs)
 
 set(CMAKE_CXX_STANDARD 17)
 
-file(GLOB FILES term1/coding/src/*.cpp)
+set(CMAKE_CXX_FLAGS_DEBUG "-g -Og")
+
+file(GLOB FILES term2/automata/src/*.cpp)
 
 foreach (FILE ${FILES})
     get_filename_component(TARGET ${FILE} NAME_WE)
