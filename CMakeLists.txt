@@ -3,7 +3,7 @@ project(dm-labs)
 
 set(CMAKE_CXX_STANDARD 17)
 
-file(GLOB FILES term3/matroids/src/*.cpp)
+file(GLOB FILES term4/genfunction/src/*.cpp)
 
 foreach (FILE ${FILES})
     get_filename_component(TARGET ${FILE} NAME_WE)
