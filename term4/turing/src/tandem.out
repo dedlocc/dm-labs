@@ -1,0 +1,46 @@
+start: leftmost
+accept: ac
+reject: rj
+blank: _
+
+leftmost 0 -> >> 0' >
+leftmost 1 -> >> 1' >
+leftmost 0' -> next 0' ^
+leftmost 1' -> next 1' ^
+
+rightmost 0 -> << 0' <
+rightmost 1 -> << 1' <
+
+>> 0 -> >> 0 >
+>> 1 -> >> 1 >
+>> _ -> rightmost _ <
+>> 0' -> rightmost 0' <
+>> 1' -> rightmost 1' <
+
+<< 0 -> << 0 <
+<< 1 -> << 1 <
+<< _ -> leftmost _ >
+<< 0' -> leftmost 0' >
+<< 1' -> leftmost 1' >
+
+check0 0' -> check0 0' <
+check0 1' -> check0 1' <
+check0 # -> check0 # <
+check0 _ -> expect0 _ >
+
+check1 0' -> check1 0' <
+check1 1' -> check1 1' <
+check1 # -> check1 # <
+check1 _ -> expect1 _ >
+
+expect0 0' -> ret _ >
+expect1 1' -> ret _ >
+
+ret 0' -> ret 0' >
+ret 1' -> ret 1' >
+ret # -> next # >
+
+next 0' -> check0 # <
+next 1' -> check1 # <
+next # -> next # >
+next _ -> ac _ ^

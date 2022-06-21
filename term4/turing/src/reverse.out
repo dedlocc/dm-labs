@@ -1,0 +1,31 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s _ -> next _ <
+s 0 -> s 0 >
+s 1 -> s 1 >
+
+next _ -> end _ >
+next . -> next . <
+next 0 -> +0 . >
+next 1 -> +1 . >
+
+skip . -> next . <
+skip 0 -> skip 0 <
+skip 1 -> skip 1 <
+
++0 _ -> skip 0 <
++0 . -> +0 . >
++0 0 -> +0 0 >
++0 1 -> +0 1 >
+
++1 _ -> skip 1 <
++1 . -> +1 . >
++1 0 -> +1 0 >
++1 1 -> +1 1 >
+
+end . -> end _ >
+end 0 -> ac 0 ^
+end 1 -> ac 1 ^
